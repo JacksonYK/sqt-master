@@ -1,0 +1,229 @@
+:root {
+	--grid-columns: 7;
+	--grid-rows: 6;
+	--grid-aspect: var(--grid-columns) / var(--grid-rows);
+
+
+	--footer-height: 48px;
+	--header-height: 64px;
+	--sidebar-width: clamp(100px, 25%, 300px);
+
+	--palette-accent0: #804;
+	--palette-accent1: #d07;
+	--palette-accent2: #f08;
+	--palette-accent3: #e48;
+	--palette-base0: #232629;
+	--palette-base1: #2d3136;
+	--palette-base2: #31363b;
+	--palette-base3: #4d5057;
+	--palette-base4: #616569;
+	--palette-base5: #eff0f1;
+	--palette-secondary0: #345e75;
+	--palette-secondary1: #3daee9;
+	--palette-secondary2: #15d41b;
+	--palette-secondary3: #900cf6;
+	--palette-secondary4: #e41814;
+	--palette-secondary5: #edf414;
+	--palette-secondary6: #f60b9f;
+	--palette-secondary7: #e8ebdb;
+
+	--grid-background: #1143c4;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	color: var(--palette-base5);
+	font-family: "Fira Sans", sans-serif;
+	font-size: 16pt;
+	height: 100%;
+	margin: 0;
+	position: absolute;
+	width: 100%;
+}
+
+header {
+	background: var(--palette-accent2);
+	height: var(--header-height);
+	padding: 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+header a {
+	color: var(--palette-base5);
+	position: absolute;
+	right: 1em;
+	top: 0.5em;
+}
+
+header h1 {
+	font-size: 28pt;
+	font-weight: bold;
+	padding: 0;
+	padding-top: 10px;
+	margin: 0;
+}
+
+aside {
+	background: var(--palette-base4);
+	height: calc(100% - var(--header-height) - var(--footer-height));
+	/* max-width: var(--sidebar-max-width); */
+	position: absolute;
+	top: var(--header-height);
+	width: var(--sidebar-width);
+}
+
+main {
+	background: var(--palette-base2);
+	height: calc(100% - var(--header-height) - var(--footer-height));
+	left: var(--sidebar-width);
+	position: absolute;
+	top: var(--header-height);
+	width: calc(100% - var(--sidebar-width));
+}
+
+footer {
+	background: var(--palette-secondary0);
+	bottom: 0px;
+	height: var(--footer-height);
+	padding: 0.5em;
+	position: absolute;
+	width: 100%;
+}
+
+#next,#hold{
+	aspect-ratio: var(--grid-aspect);
+	background: var(--palette-base0);
+	position: absolute;
+	left: 50px;
+	top:50px;
+	width: calc(37.5px * 4);
+	height: calc(37.5px * 4);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+#next::after,#hold::after{
+	content: "next_tetromino";
+	position: absolute;
+	bottom: 110%;
+	line-height: 100%;
+}
+
+#hold{
+	right: 50px;
+	top: 50px;
+	margin-right: 0px;
+}
+
+#hold::after{
+	content: "hold_tetromino";
+}
+
+#next>.row, #hold>.row {
+	height: calc(100% / 4);
+	width: calc(var(--w, 4) * 25%);
+}
+
+#next>.row>.cell , #hold>.row>.cell{
+	width: calc(100% / var(--w, 4));
+	border: 0.5px solid var(--palette-base0);
+}
+
+.grid {
+	aspect-ratio: var(--grid-aspect);
+	background: var(--palette-base0);
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	position: relative;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.grid_next_tetro {
+	aspect-ratio: var(--grid_next_tetro-aspect);
+	background: var(--palette-base5);
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	position: relative;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.row {
+	height: calc(100% / var(--grid-rows));
+	position: relative;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.next_tetro_row {
+	height: calc(100% / var(--grid-rows-next));
+	position: relative;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+
+.cell {
+	background-size: cover;
+	border: 0.5px solid var(--palette-base1);
+	display: inline-block;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: calc(100% / var(--grid-columns));
+}
+
+.next_tetro_cell {
+	background-size: cover;
+	border: 0.5px solid var(--palette-base1);
+	display: inline-block;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: calc(100% / var(--grid-columns-next));
+}
+
+.cell.empty {}
+
+.cell.I {
+	background-color: var(--palette-secondary1);
+}
+
+.cell.J {
+	background-color: var(--palette-secondary2);
+}
+
+.cell.L {
+	background-color: var(--palette-secondary3);
+}
+
+.cell.O {
+	background-color: var(--palette-secondary4);
+}
+
+.cell.S {
+	background-color: var(--palette-secondary5);
+}
+
+.cell.T {
+	background-color: var(--palette-secondary6);
+}
+
+.cell.Z {
+	background-color: var(--palette-secondary7);
+}
